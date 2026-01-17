@@ -21,6 +21,7 @@ class Config:
     CLIENT_ID = os.getenv('DISCORD_CLIENT_ID')
     CLIENT_SECRET = os.getenv('DISCORD_CLIENT_SECRET')
     REDIRECT_URI = os.getenv('REDIRECT_URI', 'http://localhost:5000/callback')
+    GUILD_ID = os.getenv('GUILD_ID')  # WICHTIG: Deine Server-ID hier eintragen!
     OAUTH2_URL = 'https://discord.com/api/oauth2/authorize'
     TOKEN_URL = 'https://discord.com/api/oauth2/token'
     API_ENDPOINT = 'https://discord.com/api/v10'
@@ -316,12 +317,16 @@ def login():
 def callback():
     code = request.args.get('code')
     if not code:
+        print("❌ Kein Code erhalten")
         return redirect('/?error=no_code')
 
     data = {'client_id': Config.CLIENT_ID, 'client_secret': Config.CLIENT_SECRET, 'grant_type': 'authorization_code', 'code': code, 'redirect_uri': Config.REDIRECT_URI}
     response = requests.post(Config.TOKEN_URL, data=data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
 
+    print(f"📡 Token Response Status: {response.status_code}")
+
     if response.status_code != 200:
+        print(f"❌ Token Fehler: {response.text}")
         return redirect('/?error=token_failed')
 
     token_data = response.json()
@@ -329,20 +334,38 @@ def callback():
     user_info = get_user_info(access_token)
 
     if not user_info:
+        print("❌ User Info konnte nicht abgerufen werden")
         return redirect('/?error=user_failed')
 
-    guild_id = str(bot.guilds[0].id) if bot.guilds else None
-    if not guild_id:
+    print(f"✅ User: {user_info.get('username')} (ID: {user_info.get('id')})")
+
+    # Guild-ID verwenden (entweder aus ENV oder aus Bot)
+    guild_id = Config.GUILD_ID
+    if not guild_id and bot.guilds:
+        guild_id = str(bot.guilds[0].id)
+        print(f"🏰 Guild ID (vom Bot): {guild_id}")
+    elif guild_id:
+        print(f"🏰 Guild ID (aus Config): {guild_id}")
+    else:
+        print("❌ Keine Guild-ID verfügbar")
         return redirect('/?error=no_guild')
 
     user_role = check_user_roles(user_info['id'], guild_id)
+    print(f"👤 Rolle gefunden: {user_role}")
+
     if not user_role:
+        print(f"❌ Keine Berechtigung für User {user_info.get('username')}")
+        # Debug: Zeige alle Rollen des Users
+        member = get_guild_member(guild_id, user_info['id'], Config.TOKEN)
+        if member:
+            print(f"📋 User Rollen: {member.get('roles', [])}")
         return redirect('/?error=no_permission')
 
     session['user'] = user_info
     session['user_role'] = user_role
     session['access_token'] = access_token
 
+    print(f"✅ Login erfolgreich: {user_info.get('username')} als {user_role}")
     return redirect('/?success=Angemeldet!')
 
 @app.route('/logout')
@@ -707,4 +730,4 @@ async def check_web_tasks():
 if __name__ == '__main__':
     flask_thread = Thread(target=run_flask, daemon=True)
     flask_thread.start()
-    bot.run (Config.TOKEN)
+    bot.run(Config.TOKEN)

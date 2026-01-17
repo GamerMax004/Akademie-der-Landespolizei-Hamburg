@@ -14,6 +14,7 @@ import asyncio
 
 # ==================== KONFIGURATION ====================
 class Config:
+    TOKEN = os.getenv('BOT_TOKEN')
     SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_hex(16))
 
     # Discord OAuth2
@@ -706,4 +707,4 @@ async def check_web_tasks():
 if __name__ == '__main__':
     flask_thread = Thread(target=run_flask, daemon=True)
     flask_thread.start()
-    bot.run os.getenv('BOT_TOKEN')
+    bot.run (Config.TOKEN)

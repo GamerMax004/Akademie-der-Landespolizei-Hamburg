@@ -1,0 +1,227 @@
+{
+  "announcements": [
+    {
+      "type": "theorie",
+      "date": "16.01.2026",
+      "time": "22:30",
+      "timestamp": 1768602600,
+      "host": 1211683189186105434,
+      "additional": "Test",
+      "created_at": "2026-01-16T21:20:43.530682"
+    },
+    {
+      "type": "theorie",
+      "date": "16.01.2026",
+      "time": "22:30",
+      "timestamp": 1768602600,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T21:26:54.759860"
+    },
+    {
+      "type": "grund",
+      "date": "16.01.2026",
+      "time": "22:30",
+      "timestamp": 1768602600,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T21:28:52.510666"
+    },
+    {
+      "type": "stvo",
+      "date": "16.01.2025",
+      "time": "22:30",
+      "timestamp": 1737066600,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T21:29:28.179293"
+    },
+    {
+      "type": "theorie",
+      "date": "16.01.2025",
+      "time": "22:50",
+      "timestamp": 1737067800,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T21:43:05.641672"
+    },
+    {
+      "type": "stvo",
+      "date": "16.01.2026",
+      "time": "23:00",
+      "timestamp": 1768604400,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T21:46:06.352626"
+    },
+    {
+      "type": "stvo",
+      "date": "16.01.2026",
+      "time": "23:10",
+      "timestamp": 1768605000,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T21:59:47.417286"
+    },
+    {
+      "type": "stvo",
+      "date": "16.01.2026",
+      "time": "23:20",
+      "timestamp": 1768605600,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T22:07:38.018432"
+    },
+    {
+      "type": "stvo",
+      "date": "16.01.2026",
+      "time": "23:30",
+      "timestamp": 1768606200,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-16T22:10:32.499061"
+    },
+    {
+      "type": "stvo",
+      "date": "17.01.2026",
+      "time": "15:00",
+      "timestamp": 1768662000,
+      "host": 1211683189186105434,
+      "created_at": "2026-01-17T13:49:04.641076"
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "eval_1768598537",
+      "type": "theorie",
+      "user_count": 1,
+      "entries": [
+        {
+          "user_id": 1211683189186105434,
+          "points": 25,
+          "grade": 6
+        }
+      ],
+      "created_by": 1211683189186105434,
+      "created_at": "2026-01-16T21:22:17.727087",
+      "completed": true,
+      "completed_at": "2026-01-16T21:22:41.869543"
+    },
+    {
+      "id": "eval_1768598876",
+      "type": "theorie",
+      "entries": [
+        {
+          "user_id": 1211683189186105434,
+          "points": 25,
+          "grade": 1,
+          "passed": true
+        }
+      ],
+      "created_by": 1211683189186105434,
+      "created_at": "2026-01-16T21:27:56.597988",
+      "completed": true,
+      "completed_at": "2026-01-16T21:28:24.067792"
+    },
+    {
+      "type": "stvo",
+      "entries": [
+        {
+          "user_id": 1211683189186105434,
+          "points": 25,
+          "grade": 1,
+          "passed": true
+        },
+        {
+          "user_id": 1211683189186105434,
+          "points": 12,
+          "grade": 4,
+          "passed": true
+        }
+      ],
+      "created_at": "2026-01-17T13:48:13.237197"
+    }
+  ],
+  "templates": {
+    "theorie": {
+      "title": "Theorieausbildung",
+      "intro": "Eine Theorie-Ausbildung findet statt. Hier sind die wichtigsten Informationen.",
+      "topics": [
+        "1. Begrüßung",
+        "2. Einführung Theorie",
+        "3. Rechtliche Grundlagen",
+        "4. Theoretische Prüfung",
+        "5. Auswertung"
+      ],
+      "additional_info": [
+        "Reagiere mit <:Dokument:1461765293847347262> um teilzunehmen.",
+        "Bei **Verspätung** wird eine Teilnahme nur schwer möglich sein."
+      ],
+      "grading": [
+        "Sehr gut: 50 – 45",
+        "Gut: 44 – 40",
+        "Befriedigend: 39 – 33",
+        "Ausreichend: 32 – 25",
+        "Mangelhaft: 24 – 15",
+        "Ungenügend: 14 – 0"
+      ],
+      "benefits": [
+        "In dieser Theorie-Ausbildung werden dir die ersten wichtigsten Kenntnisse beigebracht.",
+        "Jeder der das Training erfolgreich absolviert, bekommt die {passed_role} Rolle.",
+        "Du kannst nun an der Grundausbildung teilnehmen."
+      ]
+    },
+    "grund": {
+      "title": "Grundausbildung",
+      "intro": "Eine Grundausbildung findet statt. Hier sind die wichtigsten Informationen.",
+      "topics": [
+        "1. Wiederholung",
+        "2. Statusmeldungen/Funkausbildung",
+        "3. Absperrtraining",
+        "4. Geiselnahme-Szenarien",
+        "5. Räuber-Simulation",
+        "6. Schusstraining",
+        "7. Auswertung"
+      ],
+      "additional_info": [
+        "Reagiere mit <:Dokument:1461765293847347262> um teilzunehmen.",
+        "Bei **Verspätung** wird eine Teilnahme nur schwer möglich sein."
+      ],
+      "grading": [
+        "Sehr gut: 50 – 45",
+        "Gut: 44 – 40",
+        "Befriedigend: 39 – 33",
+        "Ausreichend: 32 – 25",
+        "Mangelhaft: 24 – 15",
+        "Ungenügend: 14 – 0"
+      ],
+      "benefits": [
+        "In dieser Grundausbildung werden dir wichtige Grundkenntnisse für den Polizeidienst beigebracht.",
+        "Jeder der das Training erfolgreich absolviert, bekommt die {passed_role} Rolle.",
+        "Du besitzt nun den Dienstgrad **Polizeimeister-Anwärter**."
+      ]
+    },
+    "stvo": {
+      "title": "StVO-Ausbildung",
+      "intro": "Eine StVO Ausbildung findet statt. Hier sind die wichtigsten Informationen.",
+      "topics": [
+        "1. Begrüßung",
+        "2. Verkehrsschilder",
+        "3. Bußgeldkatalog",
+        "4. Fit-Manöver",
+        "5. Straßenverkehrsordnung (StVO)",
+        "6. Praktischer Teil",
+        "7. Quiz"
+      ],
+      "additional_info": [
+        "Reagiere mit <:Dokument:1461765293847347262> um teilzunehmen.",
+        "Bei **Verspätung** wird eine Teilnahme nur schwer möglich sein."
+      ],
+      "grading": [
+        "Sehr gut: 25 – 22",
+        "Gut: 21 – 17",
+        "Befriedigend: 16 – 13",
+        "Ausreichend: 12 – 9",
+        "Mangelhaft: 8 – 4",
+        "Ungenügend: 3 – 0"
+      ],
+      "benefits": [
+        "In dieser StVO-Ausbildung werden dir die letzten wichtigsten Kenntnisse für den Polizeidienst beigebracht.",
+        "Jeder der das Training erfolgreich absolviert, bekommt die {passed_role} Rolle.",
+        "Du besitzt anschließend den Dienstgrad **Polizeimeister**."
+      ]
+    }
+  }
+}

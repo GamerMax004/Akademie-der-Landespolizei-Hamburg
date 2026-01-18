@@ -193,7 +193,15 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         <h2>🔐 Portal Login</h2>
         <p style="color: #666; margin-bottom: 30px;">Melde dich mit Discord an</p>
         {% if request.args.get('error') == 'no_permission' %}
-        <div class="error">❌ Keine Berechtigung!</div>
+        <div class="error">❌ Du hast keine Berechtigung! Benötigte Rollen: Ausbilder oder Ausbilderleitung</div>
+        {% elif request.args.get('error') == 'no_guild' %}
+        <div class="error">❌ Bot ist keinem Server beigetreten</div>
+        {% elif request.args.get('error') == 'user_failed' %}
+        <div class="error">❌ Benutzerinformationen konnten nicht abgerufen werden</div>
+        {% elif request.args.get('error') == 'token_failed' %}
+        <div class="error">❌ Token-Austausch fehlgeschlagen</div>
+        {% elif request.args.get('error') %}
+        <div class="error">❌ Fehler: {{ request.args.get('error') }}</div>
         {% endif %}
         <a href="/login" class="discord-btn">Mit Discord anmelden</a>
     </div>
@@ -299,6 +307,12 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
 
 @app.route('/')
 def index():
+    # Prüfe ob OAuth Code in URL (Discord Redirect)
+    code = request.args.get('code')
+    if code and not session.get('user'):
+        # Weiterleitung zum Callback
+        return redirect(url_for('callback', code=code))
+
     if not session.get('user'):
         return render_template_string(HTML_TEMPLATE, session=session, request=request)
 
@@ -640,8 +654,14 @@ async def evaluate(interaction: discord.Interaction):
     if not interaction.user.guild_permissions.manage_messages:
         return await interaction.response.send_message("❌ Keine Berechtigung", ephemeral=True)
 
-    eval_url = Config.REDIRECT_URI.rsplit('/', 1)[0] + "/"
-    view = EvaluationButton(eval_url)
+    # Korrekte URL bilden
+    base_url = Config.REDIRECT_URI.rsplit('/callback', 1)[0]
+    if not base_url.startswith('http'):
+        base_url = 'https://' + base_url
+
+    print(f"📍 Auswertungs-URL: {base_url}")
+
+    view = EvaluationButton(base_url)
 
     embed = discord.Embed(
         title="📊 Auswertung erstellen",
